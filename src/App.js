@@ -32,6 +32,7 @@ const initialExpenses = [
 
 function App() {
   const [formVisibility, setformVisibility] = useState(false);
+  const [expenseData, setexpenseData] = useState(initialExpenses);
 
   const showFormHandler = (data) => {
     setformVisibility(data);
@@ -39,16 +40,28 @@ function App() {
 
   const addNewExpenseClickHandler = () => {
     setformVisibility(true);
-  }
+  };
+
+  const submittedDataHandler = (data) => {
+    setexpenseData((prevData) => {
+      const newData =  [data, ...prevData];
+      setexpenseData(newData);
+      console.log("this is the full data", expenseData);
+    });
+    // console.log(data);
+  };
 
   return (
     <div>
       {formVisibility ? (
-        <Expenseform showForm={showFormHandler} />
+        <Expenseform
+          showForm={showFormHandler}
+          submittedData={submittedDataHandler}
+        />
       ) : (
         <button onClick={addNewExpenseClickHandler}>Add New Expense</button>
       )}
-      <Expenses expenseList={initialExpenses} />
+      <Expenses expenseList={expenseData} />
     </div>
   );
 }
