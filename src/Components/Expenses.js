@@ -3,20 +3,24 @@ import Expensefilter from './ExpenseFilter';
 import Expenseslist from './ExpensesList';
 
 const Expenses = (props) => {
-  const [filteredData, setfilteredData] = useState(props.expenseList);
+    const [filteredYear, setfilteredYear] = useState('2021');
 
-  const selectedYearHandler = (year) => {
-    const newFilteredData = props.expenseList.filter((item) => {
-      return item.date.getFullYear().toString() === year;
-    });
+    const changeExpenseFitlerHandler = (selectedYear) => {
+        setfilteredYear(selectedYear);
+      };
 
-    setfilteredData(newFilteredData);
-  };
+      const getFilteredData = props.expenseList.filter(
+        (prop) => prop.date.getFullYear().toString() === filteredYear
+      );
+
 
   return (
     <div className="expenses-container">
-      <Expensefilter selectedYear={selectedYearHandler} />
-      <Expenseslist data={filteredData} />
+      <Expensefilter
+        selectedYear={filteredYear}
+        onChangeExpenseFilter={changeExpenseFitlerHandler}
+      />
+      <Expenseslist data={getFilteredData} />
     </div>
   );
 };
