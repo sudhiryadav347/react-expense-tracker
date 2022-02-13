@@ -31,7 +31,7 @@ const initialExpenses = [
 ];
 
 function App() {
-  const [formVisibility, setformVisibility] = useState(true);
+  const [formVisibility, setformVisibility] = useState(false);
 
   const showFormHandler = (data) => {
     setformVisibility(data);
