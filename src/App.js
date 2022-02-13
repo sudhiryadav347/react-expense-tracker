@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import Expenseform from './Components/ExpenseForm';
 import Expenses from './Components/Expenses';
 
 const initialExpenses = [
@@ -30,8 +31,23 @@ const initialExpenses = [
 ];
 
 function App() {
+  const [formVisibility, setformVisibility] = useState(true);
+
+  const showFormHandler = (data) => {
+    setformVisibility(data);
+  };
+
+  const addNewExpenseClickHandler = () => {
+    setformVisibility(true);
+  }
+
   return (
     <div>
+      {formVisibility ? (
+        <Expenseform showForm={showFormHandler} />
+      ) : (
+        <button onClick={addNewExpenseClickHandler}>Add New Expense</button>
+      )}
       <Expenses expenseList={initialExpenses} />
     </div>
   );
