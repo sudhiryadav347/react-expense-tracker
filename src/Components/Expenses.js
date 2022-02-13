@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Expensefilter from './ExpenseFilter';
+import Expenseslist from './ExpensesList';
 
 const Expenses = (props) => {
   const [selectedYear, setselectedYear] = useState('2021');
@@ -14,7 +15,6 @@ const Expenses = (props) => {
 
     setfilteredData(newFilteredData);
   };
-  
 
   return (
     <div className="expenses-container">
@@ -22,16 +22,7 @@ const Expenses = (props) => {
         selectedYear={selectedYearHandler}
         defaultYear={selectedYear}
       />
-      <ul className="expense-list-items">
-        {filteredData.map((item) => {
-          return (
-            <li key={item.id}>
-              {item.title} | {item.amount} |{' '}
-              {item.date.getFullYear().toString()}
-            </li>
-          );
-        })}
-      </ul>
+      <Expenseslist data={filteredData} />
     </div>
   );
 };
