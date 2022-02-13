@@ -30,11 +30,9 @@ const initialExpenses = [
 ];
 
 function App() {
-
-
   return (
     <div>
-      <Expenses expenseList={initialExpenses}/>
+      <Expenses expenseList={initialExpenses} />
     </div>
   );
 }
