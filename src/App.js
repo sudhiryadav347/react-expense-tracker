@@ -44,11 +44,10 @@ function App() {
 
   const submittedDataHandler = (data) => {
     setexpenseData((prevData) => {
-      const newData =  [data, ...prevData];
+      const newData = [data, ...prevData];
       setexpenseData(newData);
-      console.log("this is the full data", expenseData);
+      console.log('this is the full expense data', expenseData);
     });
-    // console.log(data);
   };
 
   return (
